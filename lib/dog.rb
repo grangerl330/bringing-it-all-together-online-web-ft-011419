@@ -3,7 +3,7 @@ class Dog
   attr_accessor :name, :breed
   attr_reader :id
 
-  def initialize(name:, breed:, id: nil) #Needs to accept key/value pairs. Dont need to use = when setting default value of key
+  def initialize(name:, breed:, id: nil)
     @name = name
     @breed = breed
     @id = id
@@ -62,7 +62,7 @@ class Dog
   	self.new_from_db(row)}.first
   end
 
-  def self.find_or_create_by(name:, breed:) #Need to use keys because that is what it is initialized with
+  def self.find_or_create_by(name:, breed:)
     dog = DB[:conn].execute("SELECT * FROM dogs WHERE name = ? AND breed = ?", name, breed)
     if !dog.empty?
       dog_data = dog[0]
